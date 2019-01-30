@@ -16,6 +16,8 @@ const navLink = document.querySelectorAll("nav a");
 navLink.forEach(link => {
 // Using 'mouseover' event
     link.addEventListener("mouseover", e => {
+        // Prevent Default Method
+        e.preventDefault();
         TweenMax.to(link, .1, {scale: 1.2, color: `rgb(${randRGB()})`, ease:Ease.easeOut});
         // e.target.style.borderBottom = "2px solid black";
     });
@@ -32,15 +34,15 @@ window.addEventListener("scroll", e => {
     TweenMax.to("html", .5, {backgroundColor: `rgba(${randRGB()}, .6)`, ease:Ease.easeInOut});
 });
 
-const body = document.querySelector('body');
+const home = document.querySelector('.home');
 // Using 'click' event
-body.addEventListener('click', e => {
+home.addEventListener('click', e => {
     e.target.style.backgroundColor = `rgba(${randRGB()}, .6)`;
 });
 
-const elements = document.getElementsByTagName("*");
 // Using 'keydown' event
 window.addEventListener('keydown', e => {
+    const elements = document.getElementsByTagName("*");
     e.key === 'Shift' ? TweenMax.to(elements, .5, {backgroundColor: "none", ease:Ease.easeInOut}) : null;
 });
 
@@ -49,12 +51,31 @@ document.addEventListener('dblclick', e => {
     TweenMax.to(e.target, .8, {scale: 0, rotation: 2000, ease:Ease.easeOut});
 });
 
+// Using 'resize' event
+window.addEventListener('resize', e => {
+    document.querySelector(".intro img").src = `https://i.ytimg.com/vi/-prC9FdBcW8/maxresdefault.jpg`;
+    document.querySelector(".intro h2").textContent = 'Struggle Bus';
+    document.querySelector(".container h1").textContent = 'Burn Baby, Burn!';
+});
+
+// Using 'mouseleave' event
+const letsGo = document.querySelector('#letsGo');
+letsGo.addEventListener('mouseleave', e => {
+    letsGo.textContent = "Let's Go... To Meet Satan!";
+    e.target.style.backgroundColor = 'black';
+    e.target.style.color = 'red';
+});
+
+// Using 'auxclick' event
+document.addEventListener('auxclick', e => {
+    console.log('AUXCLICKED WOW!!!!!');
+    document.querySelector('.map').src = `http://www.quickmeme.com/img/dc/dcb1690c2cb99d7e4ab6ea5c0e153961965da7eb87d264d86e8093c2b4df7b3a.jpg`;
+});
+
 // Stop Propagation
-// const logo = document.querySelector('.logo-heading');
-// logo.addEventListener('mousedown', (e) => {
-//     event.stopPropagation();
-// });
+const logo = document.querySelector('.logo-heading');
+logo.addEventListener('mousedown', (e) => {
+    e.stopPropagation();
+    console.log(e);
+});
 
-
-// Methods Used:
-// keydown, load, mouseover, mouseout, scroll, dblclick, click
